@@ -21,8 +21,8 @@ public class PTSRAController extends Controller {
      * Constructor: initializes controller with fog devices, sensors, actuators.
      * Also initializes queue length for each device = 0.
      */
-    public PTSRAController(String name, List<FogDevice> fogDevices,
-                           List<Sensor> sensors, List<Actuator> actuators) {
+    public PTSRAController(String name, List<FogDevice> fogDevices,List<Sensor> sensors, List<Actuator> actuators) 
+    {
         super(name, fogDevices, sensors, actuators);
         for (FogDevice device : fogDevices) {
             deviceQueueLengths.put(device.getId(), 0);

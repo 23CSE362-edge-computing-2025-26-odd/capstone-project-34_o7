@@ -65,18 +65,13 @@ public class HealthcarePTSRA {
         application.addAppModule("data_processor", 10);     // Processes results
 
         // Edges define the flow of data (tuples)
-        application.addAppEdge("SENSOR", "urgency_calculator", 1000, 500,
-                "SENSOR_DATA", Tuple.UP, AppEdge.SENSOR);
-        application.addAppEdge("urgency_calculator", "data_processor", 1000, 500,
-                "URGENCY_DATA", Tuple.UP, AppEdge.MODULE);
-        application.addAppEdge("data_processor", "ACTUATOR", 100, 50,
-                "PROCESSED_DATA", Tuple.DOWN, AppEdge.ACTUATOR);
+        application.addAppEdge("SENSOR", "urgency_calculator", 1000, 500,"SENSOR_DATA", Tuple.UP, AppEdge.SENSOR);
+        application.addAppEdge("urgency_calculator", "data_processor", 1000, 500,"URGENCY_DATA", Tuple.UP, AppEdge.MODULE);
+        application.addAppEdge("data_processor", "ACTUATOR", 100, 50,"PROCESSED_DATA", Tuple.DOWN, AppEdge.ACTUATOR);
 
         // Define how tuples are transformed
-        application.addTupleMapping("urgency_calculator", "SENSOR_DATA", "URGENCY_DATA",
-                new FractionalSelectivity(1.0));
-        application.addTupleMapping("data_processor", "URGENCY_DATA", "PROCESSED_DATA",
-                new FractionalSelectivity(1.0));
+        application.addTupleMapping("urgency_calculator", "SENSOR_DATA", "URGENCY_DATA",new FractionalSelectivity(1.0));
+        application.addTupleMapping("data_processor", "URGENCY_DATA", "PROCESSED_DATA",new FractionalSelectivity(1.0));
 
         // Define the application loop: SENSOR → urgency_calculator → data_processor → ACTUATOR
         List<String> loop = new ArrayList<String>();
@@ -128,8 +123,7 @@ public class HealthcarePTSRA {
 
         FogDevice fogdevice = null;
         try {
-            fogdevice = new FogDevice(nodeName, characteristics,
-                    new FogLinearPowerModel(busyPower, idlePower), ratePerMips, 0, 0, 100);
+            fogdevice = new FogDevice(nodeName, characteristics,new FogLinearPowerModel(busyPower, idlePower), ratePerMips, 0, 0, 100);
         } catch (Exception e) {
             e.printStackTrace();
         }

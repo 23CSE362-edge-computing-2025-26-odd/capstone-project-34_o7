@@ -7,7 +7,7 @@ dbn, scaler, thr = load_model("final_dbn_bfoa_model.pkl")
 @app.route("/predict", methods=["POST"])
 def predict_api():
     data = request.get_json()
-    result = predict(data, dbn, scaler)
+    result = data.predict(data, dbn, scaler)
     return jsonify(result)
 
 if __name__ == "__main__":
