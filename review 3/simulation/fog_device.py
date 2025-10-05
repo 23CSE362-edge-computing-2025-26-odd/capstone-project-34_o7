@@ -1,4 +1,3 @@
-# Import SimPy library for event-driven simulation and resource management
 import simpy
 
 class FogDevice:
@@ -22,5 +21,5 @@ class FogDevice:
         self.name = name
         self.mips = mips
         self.up_bw = up_bw
-       # The CPU resource with a capacity of 1 means it can process one task at a time
+        # The CPU resource with a capacity of 1 means it can process one task at a time.
         self.cpu = simpy.Resource(env, capacity=1)
