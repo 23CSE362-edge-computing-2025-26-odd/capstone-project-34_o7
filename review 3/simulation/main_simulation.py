@@ -1,4 +1,3 @@
-# Import required libraries for simulation, API communication, and statistical analysis
 import simpy
 import requests
 import statistics
@@ -7,25 +6,17 @@ from fog_device import FogDevice
 
 # =============================================================================
 # 1. CONFIGURATION
-# Define global constants for simulation time, number of devices, and data/task parameters
-
 # =============================================================================
 # Simulation parameters
-
 SIMULATION_TIME = 100  # Total simulation time in seconds
 NUM_HOSPITAL_WORKSTATIONS = 3
 SENSOR_INTERVAL = 5  # Time (seconds) between sensor readings from each sensor
 
 # Task parameters (based on your Java files)
-# Each task requires 2000 MIPS and transfers 1MB of data over the network
-
 TASK_PROCESSING_LENGTH = 2000  # MIPS (Million Instructions Per Second) required for a task
 TASK_DATA_SIZE = 1000          # Data size in KB for network transmission
 
 # Device specifications (MIPS, Uplink BW in KBps, Latency to Parent in ms)
-# Specifications for cloud, gateway, and hospital workstation devices
-# Defines their MIPS capacity, bandwidth, and network latency
-
 DEVICE_SPECS = {
     "cloud":   {"mips": 44800, "up_bw": 10000, "latency": 400},
     "gateway": {"mips": 2800,  "up_bw": 10000, "latency": 300},
